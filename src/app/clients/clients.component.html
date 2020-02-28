@@ -7,10 +7,10 @@
   <thead class="thead-dark">
     <tr>
       <th>Id</th>
+      <th>Usuario</th>
       <th>Nombre</th>
       <th>Apellido</th>
       <th>email</th>
-      <th>Fecha de creacion</th>
       <th>Editar</th>
       <th>Eliminar</th>
     </tr>
@@ -18,10 +18,10 @@
   <tbody>
   <tr *ngFor="let cliente of clients">
     <td>{{cliente.id}}</td>
+    <td>{{cliente.username}}</td>
     <td>{{cliente.name}}</td>
     <td>{{cliente.surname}}</td>
     <td>{{cliente.email}}</td>
-    <td>{{cliente.creationDate}}</td>
     <td><button type="button" [routerLink]="['/clientes/form', cliente.id]" class=" btn btn-primary btn-sm">Editar</button></td>
     <td><button type="button" (click)="delete(cliente)" class=" btn btn-danger btn-sm">Eliminar</button></td>
   </tr>

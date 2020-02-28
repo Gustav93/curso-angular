@@ -17,6 +17,10 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (this.authService.isAuthenticated()) {
+      swal.fire('Sign In', `Hi ${this.authService.user.name}, you're already authenticated`, 'info');
+      this.router.navigate(['/clientes']);
+    }
   }
 
   login(): void {
@@ -27,10 +31,20 @@ export class LoginComponent implements OnInit {
     }
     this.authService.login(this.user).subscribe(response => {
       console.log(response);
-      const payload = JSON.parse(atob(response.access_token.split('.')[1]));
-      console.log(payload);
-      swal.fire('Sign In Success', `Hi ${payload.name}, you have been successfully logged into the app`, 'success');
+
+      this.authService.saveToken(response.access_token);
+      this.authService.saveUser(response.access_token);
+
+      const user = this.authService.user;
+
+      swal.fire('Sign In Success', `Hi ${user.name}, you have been successfully logged into the app`, 'success');
       this.router.navigate(['/clientes']);
-    });
+    }, error => {
+      // tslint:disable-next-line:triple-equals
+      if (error.status == 400) {
+        swal.fire('Sign In error', 'Wrong Username or password', 'error');
+        }
+      }
+    );
   }
 }
