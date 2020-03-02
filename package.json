@@ -19,7 +19,10 @@
     "@angular/platform-browser": "~8.0.3",
     "@angular/platform-browser-dynamic": "~8.0.3",
     "@angular/router": "~8.0.3",
+    "bcryptjs": "^2.4.3",
     "bootstrap": "^4.0.0-beta.2",
+    "crypto-js": "^4.0.0",
+    "cryptr": "^6.0.1",
     "jquery": "^3.4.1",
     "popper.js": "^1.15.0",
     "rxjs": "~6.4.0",
@@ -47,5 +50,17 @@
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
     "typescript": "~3.4.3"
+  },
+  "browser": {
+    "fs": false,
+    "path": false,
+    "os": false,
+    "crypto": false,
+    "stream": false,
+    "http": false,
+    "tls": false,
+    "zlib": false,
+    "https": false,
+    "net": false
   }
 }

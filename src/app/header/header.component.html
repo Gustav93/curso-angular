@@ -9,10 +9,13 @@
       <li class="nav-item active">
         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item" routerLinkActive="active">
+      <li *ngIf="authService.hasRole('ROLE_ADMIN')" class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/users">Users</a>
+      </li>
+      <li *ngIf="authService.hasRole('ROLE_ADMIN')" class="nav-item" routerLinkActive="active">
         <a class="nav-link" routerLink="/clientes">Clientes</a>
       </li>
-      <li class="nav-item" routerLinkActive="active">
+      <li *ngIf="authService.hasRole('ROLE_ADMIN') || authService.hasRole('ROLE_USER')" class="nav-item" routerLinkActive="active">
         <a class="nav-link" routerLink="/directivas">Directivas</a>
       </li>
     </ul>

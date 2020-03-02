@@ -11,8 +11,8 @@
       <th>Nombre</th>
       <th>Apellido</th>
       <th>email</th>
-      <th>Editar</th>
-      <th>Eliminar</th>
+      <th *ngIf="authService.hasRole('ROLE_ADMIN')">Editar</th>
+      <th *ngIf="authService.hasRole('ROLE_ADMIN')">Eliminar</th>
     </tr>
   </thead>
   <tbody>
@@ -22,8 +22,8 @@
     <td>{{cliente.name}}</td>
     <td>{{cliente.surname}}</td>
     <td>{{cliente.email}}</td>
-    <td><button type="button" [routerLink]="['/clientes/form', cliente.id]" class=" btn btn-primary btn-sm">Editar</button></td>
-    <td><button type="button" (click)="delete(cliente)" class=" btn btn-danger btn-sm">Eliminar</button></td>
+    <td *ngIf="authService.hasRole('ROLE_ADMIN')"><button type="button" [routerLink]="['/clientes/form', cliente.id]" class=" btn btn-primary btn-sm">Editar</button></td>
+    <td *ngIf="authService.hasRole('ROLE_ADMIN')"><button type="button" (click)="delete(cliente)" class=" btn btn-danger btn-sm">Eliminar</button></td>
   </tr>
   </tbody>
 </table>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Client} from './client';
 import {ClientService} from './client.service';
 import Swal from 'sweetalert2';
+import {AuthService} from '../users/auth.service';
 
 
 @Component({
@@ -11,7 +12,7 @@ import Swal from 'sweetalert2';
 export class ClientsComponent implements OnInit {
   public clients: Client[];
 
-  constructor(private clientService: ClientService) { }
+  constructor(private clientService: ClientService, private authService: AuthService) { }
 
   ngOnInit() {
     this.clientService.getClients().subscribe(

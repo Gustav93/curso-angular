@@ -3,6 +3,8 @@ import { User } from './User';
 import swal from 'sweetalert2';
 import {AuthService} from './auth.service';
 import {Router} from '@angular/router';
+import * as bcrypt from 'bcryptjs';
+import * as crypto from 'crypto-js';
 
 @Component({
   selector: 'app-login',
@@ -31,6 +33,9 @@ export class LoginComponent implements OnInit {
     }
     this.authService.login(this.user).subscribe(response => {
       console.log(response);
+      const salt = bcrypt.genSaltSync(10);
+      const pass = bcrypt.hashSync('12345', salt);
+      console.log(pass);
 
       this.authService.saveToken(response.access_token);
       this.authService.saveUser(response.access_token);
