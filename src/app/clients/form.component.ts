@@ -3,6 +3,7 @@ import {Client} from './client';
 import {ClientService} from './client.service';
 import {Router, ActivatedRoute} from '@angular/router';
 import swal from 'sweetalert2';
+import * as bcrypt from 'bcryptjs';
 
 @Component({
   selector: 'app-form',
@@ -39,9 +40,15 @@ export class FormComponent implements OnInit {
   }
 
   public update(): void {
-    this.clientService.update(this.client).subscribe(client => {
+    this.clientService.getClient(this.client.id).subscribe(userSource => {
+      if (userSource.password !== this.client.password) {
+        this.client.password = bcrypt.hashSync(this.client.password, bcrypt.genSaltSync(10));
+      }
+
+      this.clientService.update(this.client).subscribe(client => {
         this.router.navigate(['/clientes']);
         swal.fire('Cliente Actualizado', `Cliente ${client.name} ${client.surname} actualizado exitosamente`, 'success');
+      });
     });
   }
 }

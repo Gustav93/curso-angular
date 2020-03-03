@@ -4,7 +4,6 @@ import swal from 'sweetalert2';
 import {AuthService} from './auth.service';
 import {Router} from '@angular/router';
 import * as bcrypt from 'bcryptjs';
-import * as crypto from 'crypto-js';
 
 @Component({
   selector: 'app-login',
