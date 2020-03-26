@@ -58,7 +58,7 @@ export class AuthService {
     this._user.username = payload.username;
     this._user.email = payload.email;
     this._user.username = payload.user_name;
-    this._user.roles = payload.authorities;
+    this._user.authorities = payload.authorities;
     sessionStorage.setItem('user', JSON.stringify(this.user));
   }
 
@@ -87,6 +87,6 @@ export class AuthService {
   }
 
   hasRole(role: string): boolean {
-    return this.user.roles.includes(role);
+    return this.user.authorities.includes(role);
   }
 }

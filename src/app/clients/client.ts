@@ -1,3 +1,5 @@
+import {Role} from '../users/Role';
+
 export class Client {
   public id: number;
   public username: string;
@@ -5,5 +7,7 @@ export class Client {
   public name: string;
   public surname: string;
   public email: string;
-  roles: string[] = [];
+  public enabled: boolean;
+  authorities: string[] = [];
+  roles: Role[] = [];
 }
